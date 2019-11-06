@@ -16,11 +16,25 @@ def open_application():
 
     # create GUI itself
     cal_profit_date = tk.StringVar()
+    numb_of_hotdogs = tk.IntVar()
+    sale_date = tk.StringVar()
+    price = tk.DoubleVar()
     tk.Label(window, text="The Hotdog World", font=("Eras Bold ITC", 30), background="#90ee90", width=40,
                   height=2).grid(row=0,columnspan=2)
-    tk.Button(window, text="Calculate Total Profit", command=calculate_total_profit).grid(row=1,pady=15)
-    tk.Entry(window, textvariable=cal_profit_date).grid(row=2, column=0)
-    tk.Button(window, text="Calculate Day Profit", command=lambda: calculate_day_total(cal_profit_date.get())).grid(row=2,column=1)
+    tk.Button(window, text="Calculate Total Profit", command=calculate_total_profit).grid(row=1,columnspan=2)
+    tk.Entry(window, textvariable=cal_profit_date).grid(sticky="E",row=2, column=0, padx=15)
+    tk.Button(window, text="Calculate Day Profit", command=lambda: calculate_day_total(cal_profit_date.get())).grid(sticky="W", row=2,column=1)
+
+    tk.Label(window, text="Number of Hot Dogs").grid(sticky="E",row=3, column=0, padx=15)
+    tk.Entry(window, textvariable=numb_of_hotdogs).grid(sticky="W", row=3, column=1)
+
+    tk.Label(window, text="Sale Date").grid(sticky="E", row=4, column=0, padx=15)
+    tk.Entry(window, textvariable=sale_date).grid(sticky="W",row=4, column=1)
+
+    tk.Label(window, text="Sale Price").grid(sticky="E", row=5, column=0, padx=15)
+    tk.Entry(window, textvariable=price).grid(sticky="W", row=5, column=1)
+
+    tk.Button(window, text="Add Hot Dog Order", command=lambda: add_sale(numb_of_hotdogs.get(), sale_date.get(), price.get())).grid(row=6,columnspan=2)
 
     window.grid()
     window.mainloop()
@@ -28,8 +42,8 @@ def open_application():
 
 def add_sale(num_of_hotdogs, sale_date, price):
     """this will add the sale to the file"""
-    success = True
-    return success
+
+    return 'Sale has been added successfully!'
 
 
 def calculate_total_profit():
