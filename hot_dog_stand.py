@@ -46,4 +46,5 @@ def calculate_day_total(day):
     return day_total_profit
 
 
-open_application()
+if __name__ == '__main__':
+    open_application()
