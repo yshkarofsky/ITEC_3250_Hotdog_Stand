@@ -9,7 +9,7 @@ def open_application():
     window.tk_setPalette(background='#F8F8F8', foreground='black',
                 activeBackground='#C0C0C0', activeForeground='#F8F8F8')
 
-    # create dimentions of window- half of screen width & height
+    # create dimensions of window- half of screen width & height
     width = window.winfo_screenwidth()
     height = window.winfo_screenheight()
     window.geometry('%sx%s' % (int(width/1.5), int(height/1.5)))

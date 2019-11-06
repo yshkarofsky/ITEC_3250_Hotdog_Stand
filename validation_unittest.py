@@ -1,4 +1,5 @@
 import unittest
+from hot_dog_stand import calculate_day_total, calculate_total_profit, add_sale
 
 
 class MyTestCase(unittest.TestCase):
