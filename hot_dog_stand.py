@@ -72,13 +72,11 @@ def add_sale(num_of_hotdogs, sale_date, price):
 
 def calculate_total_profit():
     """reads file and calculates total profit"""
-    total_profit = 0
-    df = pd.read_csv(filepath_or_buffer="sales_file.csv", index_col=0)
-    for row in df:
-      print(row)
 
-    tk.messagebox.showinfo("Hot Dog World | Total Profit", "The total profits are: " + str(total_profit))
-    return total_profit
+    df = pd.read_csv(filepath_or_buffer="sales_file.csv", index_col=0)
+    total_price = float(df[['price']].sum())
+    tk.messagebox.showinfo("Hot Dog World | Total Profit", "The total profits are: " + str(total_price))
+    return total_price
 
 
 def calculate_day_total(day):
