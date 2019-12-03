@@ -50,7 +50,7 @@ def add_sale(num_of_hotdogs, sale_date, price):
         if MsgBox == 'no':
             return
 
-        with open('employee_file.csv', mode='a') as sales_file:
+        with open('sales_file.csv', mode='a') as sales_file:
             sales_writer = csv.writer(sales_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
             sales_writer.writerow([num_of_hotdogs, sale_date, price])
@@ -64,6 +64,9 @@ def add_sale(num_of_hotdogs, sale_date, price):
 def calculate_total_profit():
     """reads file and calculates total profit"""
     total_profit = 0
+    with open('sales_file.csv', 'r') as fd:
+      fd.write(myCsvRow)
+
     tk.messagebox.showinfo("Hot Dog World | Total Profit", "The total profits are: " + str(total_profit))
     return total_profit
 
