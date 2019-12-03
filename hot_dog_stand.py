@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 import csv
+import pandas as pd
+
 
 def open_application():
 
@@ -64,8 +66,7 @@ def add_sale(num_of_hotdogs, sale_date, price):
 def calculate_total_profit():
     """reads file and calculates total profit"""
     total_profit = 0
-    with open('sales_file.csv', 'r') as fd:
-      fd.write(myCsvRow)
+    pd.read_csv(filepath_or_buffer="sales_file.csv")
 
     tk.messagebox.showinfo("Hot Dog World | Total Profit", "The total profits are: " + str(total_profit))
     return total_profit
