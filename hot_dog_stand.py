@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-
+import csv
 
 def open_application():
 
@@ -42,8 +42,23 @@ def open_application():
 
 def add_sale(num_of_hotdogs, sale_date, price):
     """this will add the sale to the file"""
+    try:
+        MsgBox = tk.messagebox.askquestion('Confirm', 'Are you sure you want to add in the following sale?'
+                                           '\nNumber of Hot dogs: ' + str(num_of_hotdogs) +
+                                           '\nSale Date: ' + str(sale_date) +
+                                           '\nPrice: ' + str(price))
+        if MsgBox == 'no':
+            return
 
-    return 'Sale has been added successfully!'
+        with open('employee_file.csv', mode='a') as sales_file:
+            sales_writer = csv.writer(sales_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+            sales_writer.writerow([num_of_hotdogs, sale_date, price])
+
+        tk.messagebox.showinfo("Success", "Sale has been added successfully!")
+
+    except Exception as e:
+        tk.messagebox.showerror("Error", "There was an error adding the sale: " + str(e))
 
 
 def calculate_total_profit():
