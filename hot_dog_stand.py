@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-import csv
 import pandas as pd
 
 
@@ -9,7 +8,7 @@ def open_application():
     window = tk.Tk()
     window.title("Hot Dog World")
     window.tk_setPalette(background='#F8F8F8', foreground='black',
-                activeBackground='#C0C0C0', activeForeground='#F8F8F8')
+                      activeBackground='#C0C0C0', activeForeground='#F8F8F8')
 
     # create dimensions of window- half of screen width & height
     width = window.winfo_screenwidth()
@@ -52,11 +51,19 @@ def add_sale(num_of_hotdogs, sale_date, price):
         if MsgBox == 'no':
             return
 
-        with open('sales_file.csv', mode='a') as sales_file:
-            sales_writer = csv.writer(sales_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        # get original df
+        df_org_file = pd.read_csv(filepath_or_buffer="sales_file.csv", index_col=0)
+        # get new info (save as df)
+        new_data = {'num_of_hotdogs': [num_of_hotdogs],
+                'sale_date': [sale_date],
+                'price': [price]}
+        new_df = pd.DataFrame(new_data)
 
-            sales_writer.writerow([num_of_hotdogs, sale_date, price])
-
+        # merge two df together
+        df_combo = df_org_file.append(new_df, ignore_index=True)
+        # write to csv
+        df_combo.to_csv(path_or_buf='sales_file.csv')
+        # success mssg
         tk.messagebox.showinfo("Success", "Sale has been added successfully!")
 
     except Exception as e:
@@ -66,7 +73,9 @@ def add_sale(num_of_hotdogs, sale_date, price):
 def calculate_total_profit():
     """reads file and calculates total profit"""
     total_profit = 0
-    pd.read_csv(filepath_or_buffer="sales_file.csv")
+    df = pd.read_csv(filepath_or_buffer="sales_file.csv", index_col=0)
+    for row in df:
+      print(row)
 
     tk.messagebox.showinfo("Hot Dog World | Total Profit", "The total profits are: " + str(total_profit))
     return total_profit
