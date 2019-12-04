@@ -33,7 +33,7 @@ class TestingValues(unittest.TestCase):
 
     ### Test 6 ###
     def test_total_of_transaction(self):
-        self.assertEqual(257.77, calculate_total_profit())
+        self.assertEqual(311.32, calculate_total_profit())
 
 
 if __name__ == '__main__':
