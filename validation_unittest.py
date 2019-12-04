@@ -5,7 +5,7 @@ from hot_dog_stand import calculate_day_total, calculate_total_profit, add_sale,
 class TestingValues(unittest.TestCase):
     ########## Testing Input Variables #############
     numb_of_hotdogs = int(5)  # number of hot dogs sold in a transaction
-    price = 5           # price of each hot dog sold in transaction
+    price = 5.00           # price of each hot dog sold in transaction
 
     ### Test 1 ###
     def test_numb_of_hotdogs_is_an_integer(self):
