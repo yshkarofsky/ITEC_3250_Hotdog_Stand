@@ -10,7 +10,7 @@ def open_application():
     window = tk.Tk()
     window.title("Hot Dog World")
     window.tk_setPalette(background='#F8F8F8', foreground='black',
-                      activeBackground='#C0C0C0', activeForeground='#F8F8F8')
+                         activeBackground='#C0C0C0', activeForeground='#F8F8F8')
 
     # create dimensions of window- half of screen width & height
     width = window.winfo_screenwidth()
@@ -23,21 +23,22 @@ def open_application():
     sale_date = datetime.date.today()
     price = tk.DoubleVar()
     tk.Label(window, text="The Hotdog World", font=("Eras Bold ITC", 30), background="#90ee90", width=40,
-                  height=2).grid(row=0,columnspan=2)
-    tk.Button(window, text="Calculate Total Profit", command=calculate_total_profit).grid(row=1,columnspan=2)
-    tk.Entry(window, textvariable=cal_profit_date).grid(sticky="E", row=2, column=0, padx=15)
-    tk.Button(window, text="Calculate Day Profit (yyyy-mm-dd)", command=lambda: calculate_day_total(cal_profit_date.get())).grid(sticky="W", row=2,column=1)
+             height=2).grid(row=0,columnspan=2)
 
-    tk.Label(window, text="Number of Hot Dogs").grid(sticky="E",row=3, column=0, padx=15)
-    tk.Entry(window, textvariable=numb_of_hotdogs).grid(sticky="W", row=3, column=1)
+    tk.Label(window, text="Number of Hot Dogs").grid(sticky="E",row=3, column=0, padx=15, pady=(30, 0))
+    tk.Entry(window, textvariable=numb_of_hotdogs).grid(sticky="W", row=3, column=1, pady=(30, 0))
 
-    tk.Label(window, text="Sale Date").grid(sticky="E", row=4, column=0, padx=15)
-    tk.Label(window, text=sale_date).grid(sticky="W",row=4, column=1)
+    tk.Label(window, text="Sale Date").grid(sticky="E", row=4, column=0, padx=15, pady=5)
+    tk.Label(window, text=sale_date).grid(sticky="W",row=4, column=1, pady=5)
 
-    tk.Label(window, text="Sale Price").grid(sticky="E", row=5, column=0, padx=15)
-    tk.Entry(window, textvariable=price).grid(sticky="W", row=5, column=1)
+    tk.Label(window, text="Sale Price").grid(sticky="E", row=5, column=0, padx=15, pady=5)
+    tk.Entry(window, textvariable=price).grid(sticky="W", row=5, column=1, pady=5)
 
-    tk.Button(window, text="Add Hot Dog Order", command=lambda: add_sale(numb_of_hotdogs.get(), sale_date, price.get())).grid(row=6,columnspan=2)
+    tk.Button(window, text="Add Hot Dog Order", command=lambda: add_sale(numb_of_hotdogs.get(), sale_date, price.get())).grid(row=6,columnspan=2, pady=5)
+
+    tk.Button(window, text="Calculate Total Profit", command=calculate_total_profit).grid(row=7,columnspan=2, pady=5)
+    tk.Entry(window, textvariable=cal_profit_date).grid(sticky="E", row=8, column=0, padx=15, pady=5)
+    tk.Button(window, text="Calculate Day Profit (yyyy-mm-dd)", command=lambda: calculate_day_total(cal_profit_date.get())).grid(sticky="W", row=8,column=1, pady=5)
 
     window.grid()
     window.mainloop()
