@@ -2,15 +2,9 @@ import unittest
 from hot_dog_stand import calculate_day_total, calculate_total_profit, add_sale, calculate_total_profit
 
 
-### Added function to test 'Test 6') ###
-def calculate_transaction_total(a, b):
-    return a + b
-
-
-
 class TestingValues(unittest.TestCase):
     ########## Testing Input Variables #############
-    numb_of_hotdogs = 5  # number of hot dogs sold in a transaction
+    numb_of_hotdogs = int(5)  # number of hot dogs sold in a transaction
     price = 5           # price of each hot dog sold in transaction
 
     ### Test 1 ###
