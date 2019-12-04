@@ -36,7 +36,7 @@ def open_application():
     tk.Label(window, text="Sale Price").grid(sticky="E", row=5, column=0, padx=15)
     tk.Entry(window, textvariable=price).grid(sticky="W", row=5, column=1)
 
-    tk.Button(window, text="Add Hot Dog Order", command=lambda: add_sale(numb_of_hotdogs.get(), sale_date.get(), price.get())).grid(row=6,columnspan=2)
+    tk.Button(window, text="Add Hot Dog Order", command=lambda: add_sale(numb_of_hotdogs.get(), sale_date, price.get())).grid(row=6,columnspan=2)
 
     window.grid()
     window.mainloop()

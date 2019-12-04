@@ -1,5 +1,5 @@
 import unittest
-from hot_dog_stand import calculate_day_total, calculate_total_profit, add_sale
+from hot_dog_stand import calculate_day_total, calculate_total_profit, add_sale, calculate_total_profit
 
 
 ### Added function to test 'Test 6') ###
@@ -10,14 +10,14 @@ def calculate_transaction_total(a, b):
 
 class TestingValues(unittest.TestCase):
     ########## Testing Input Variables #############
-    numb_of_hotdogs = 5 # number of hot dogs sold in a transaction
+    numb_of_hotdogs = 5  # number of hot dogs sold in a transaction
     price = 5           # price of each hot dog sold in transaction
 
     ### Test 1 ###
     def test_numb_of_hotdogs_is_an_integer(self):
         # Verify number of hotdogs is an integer
-        self.assertEqual(self.numb_of_hotdogs, int(self.numb_of_hotdogs))
-        
+        self.assertIsInstance(self.numb_of_hotdogs, int)
+
     ### Test 2 ###
     def test_numb_of_hotdogs_is_positive(self):
         # Verify number of hotdogs is positive
@@ -26,7 +26,7 @@ class TestingValues(unittest.TestCase):
     ### Test 3 ###
     def test_price_is_a_number(self):
         # Verify price is a number
-        self.assertEqual(self.price, float(self.price))
+        self.assertIsInstance(self.price, float)
 
     ### Test 4 ###
     def test_price_is_positive(self):
@@ -38,9 +38,8 @@ class TestingValues(unittest.TestCase):
         self.assertEqual(self.price, round(self.price,2))
 
     ### Test 6 ###
-    ### Name of Function?????? NOT YET DEFINED (calculate_transaction_total)####
     def test_total_of_transaction(self):
-        self.assertEqual(self.numb_of_hotdogs + self.price, calculate_transaction_total(self.numb_of_hotdogs, self.price))
+        self.assertEqual(257.77, calculate_total_profit())
 
 
 if __name__ == '__main__':
