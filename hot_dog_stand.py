@@ -1,4 +1,5 @@
 import tkinter as tk
+from datetime import datetime
 import datetime
 from tkinter import messagebox
 import pandas as pd
@@ -82,6 +83,12 @@ def calculate_total_profit():
 
 def calculate_day_total(day):
     """reads file and calculates the total profit for that day"""
+    try:
+        convert_date = datetime.datetime.strptime(day, '%Y-%m-%d')
+    except Exception as e:
+        print(e)
+        tk.messagebox.showerror("Invalid Date", "That was an invalid date. Error: " + str(e))
+        return
 
     df = pd.read_csv(filepath_or_buffer="sales_file.csv")
     day_total_profit = df.query("sale_date == '" + str(day) + "'")["price"].sum()
