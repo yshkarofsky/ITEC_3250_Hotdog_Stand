@@ -24,8 +24,8 @@ def open_application():
     tk.Label(window, text="The Hotdog World", font=("Eras Bold ITC", 30), background="#90ee90", width=40,
                   height=2).grid(row=0,columnspan=2)
     tk.Button(window, text="Calculate Total Profit", command=calculate_total_profit).grid(row=1,columnspan=2)
-    tk.Entry(window, textvariable=cal_profit_date).grid(sticky="E",row=2, column=0, padx=15)
-    tk.Button(window, text="Calculate Day Profit", command=lambda: calculate_day_total(cal_profit_date.get())).grid(sticky="W", row=2,column=1)
+    tk.Entry(window, textvariable=cal_profit_date).grid(sticky="E", row=2, column=0, padx=15)
+    tk.Button(window, text="Calculate Day Profit (yyyy-mm-dd)", command=lambda: calculate_day_total(cal_profit_date.get())).grid(sticky="W", row=2,column=1)
 
     tk.Label(window, text="Number of Hot Dogs").grid(sticky="E",row=3, column=0, padx=15)
     tk.Entry(window, textvariable=numb_of_hotdogs).grid(sticky="W", row=3, column=1)
@@ -82,7 +82,9 @@ def calculate_total_profit():
 
 def calculate_day_total(day):
     """reads file and calculates the total profit for that day"""
-    day_total_profit = 0
+
+    df = pd.read_csv(filepath_or_buffer="sales_file.csv")
+    day_total_profit = df.query("sale_date == '" + str(day) + "'")["price"].sum()
     tk.messagebox.showinfo("Hot Dog World | Day Total Profit", "The total profits for " + day + " are: " + str(day_total_profit))
     return day_total_profit
 
